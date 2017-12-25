@@ -3,9 +3,7 @@ package ru.stqa.Anna.sandbox;
 public class MyFirstProgram {
 
 	public static void main(String[] agrs) {
-		hello("user");
 		hello("Anna");
-
 		Square s = new Square(6);
 
 		Rectangle r = new Rectangle(4,6);
@@ -19,4 +17,3 @@ public class MyFirstProgram {
 }
 
 
-}
