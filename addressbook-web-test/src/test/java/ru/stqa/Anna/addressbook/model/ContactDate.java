@@ -1,4 +1,4 @@
-package ru.stqa.Anna.addressbook;
+package ru.stqa.Anna.addressbook.model;
 
 public class ContactDate {
   private final String firstname;

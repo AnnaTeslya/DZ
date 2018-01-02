@@ -1,4 +1,4 @@
-package ru.stqa.Anna.addressbook;
+package ru.stqa.Anna.addressbook.model;
 
 public class GroupDate {
   private final String name;
