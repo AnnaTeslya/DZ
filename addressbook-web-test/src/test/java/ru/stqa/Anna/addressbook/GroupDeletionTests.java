@@ -12,3 +12,4 @@ public class GroupDeletionTests extends TestBase {
         returnGroupPage();
     }
 
+}
