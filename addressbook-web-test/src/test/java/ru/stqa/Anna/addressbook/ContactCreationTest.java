@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
 
 public class ContactCreationTest {
-    FirefoxDriver wd;
+     FirefoxDriver wd;
     
     @BeforeMethod
     public void setUp() throws Exception {
