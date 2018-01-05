@@ -10,7 +10,8 @@ public class ApplicationManager {
   FirefoxDriver wd;
   private  SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
-  private  GroupAndContactHelper groupHelper;
+  private  GroupHelper groupHelper;
+  private  ContactHelper contactHelper;
 
   public static boolean isAlertPresent(FirefoxDriver wd) {
       try {
@@ -25,9 +26,10 @@ public class ApplicationManager {
    wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
    wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/index.php");
-    groupHelper = new GroupAndContactHelper(wd);
+    groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
+    contactHelper = new ContactHelper(wd);
     sessionHelper.login("secret", "admin");
   }
 
@@ -35,7 +37,7 @@ public class ApplicationManager {
     wd.quit();
   }
 
-  public GroupAndContactHelper getGroupHelper() {
+  public GroupHelper getGroupHelper() {
     return groupHelper;
   }
 
@@ -45,5 +47,8 @@ public class ApplicationManager {
 
   public SessionHelper getSessionHelper() {
     return sessionHelper;
+  }
+  public ContactHelper getContactHelper() {
+    return contactHelper;
   }
 }
