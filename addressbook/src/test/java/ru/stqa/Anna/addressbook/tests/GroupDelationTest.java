@@ -7,10 +7,10 @@ public class GroupDelationTest extends TestBase {
     @Test
     public void testGroupDelation() {
 
-        app.gotoGroupPage();
-        app.selectGroup();
-        app.deleteSelectedGroups();
-        app.returnGroupPage();
+        app.getNavigationHelper().gotoGroupPage();
+        app.getGroupHelper().selectGroup();
+        app.getGroupHelper().deleteSelectedGroups();
+        app.getGroupHelper().returnGroupPage();
     }
 
 }
