@@ -42,9 +42,9 @@ public class ApplicationManager {
     if (browser.equals(BrowserType.FIREFOX)){
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
     } else if (browser.equals(BrowserType.CHROME)){
-      wd = new ChromeDriver(new ChromeOptions().setLegacy(true));
+      wd = new ChromeDriver();
     } else if (browser.equals(BrowserType.IE))
-      wd = new InternetExplorerDriver(new InternetExplorerOptions().setLegacy(true));
+      wd = new InternetExplorerDriver();
 
 
    wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
