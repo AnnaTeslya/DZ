@@ -11,7 +11,7 @@ public class CroupCreationTest extends TestBase {
 
         app.getNavigationHelper().gotoGroupPage();
         app.getGroupHelper().initGroupCreation();
-        app.getGroupHelper().fillGroupForm(new GroupDate("test100", "test", "test"));
+        app.getGroupHelper().fillGroupForm(new GroupDate("test100", null,null));
         app.getGroupHelper().submitGroupCreation();
         app.getGroupHelper().returnGroupPage();
     }
