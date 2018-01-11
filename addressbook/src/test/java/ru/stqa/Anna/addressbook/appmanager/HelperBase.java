@@ -1,6 +1,7 @@
 package ru.stqa.Anna.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -26,4 +27,13 @@ public class HelperBase {
     protected void click (By locator){
       wd.findElement(locator).click();
     }
+
+  protected boolean isElementPresent(By locator) {
+    try {
+      wd.findElement(By.name("new_group"));
+      return true;
+    } catch (NoSuchElementException ex) {
+      return false;
+    }
   }
+}
