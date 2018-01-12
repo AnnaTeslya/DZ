@@ -9,7 +9,7 @@ public class GroupDelationTest extends TestBase {
     public void testGroupDelation() {
 
         app.getNavigationHelper().gotoGroupPage();
-        if(!app.getGroupHelper().isThereAGroup()){
+        if( ! app.getGroupHelper().isThereAGroup()){
             app.getGroupHelper().createGroup(new GroupDate("test101", null,null));
         }
         app.getGroupHelper().selectGroup();
