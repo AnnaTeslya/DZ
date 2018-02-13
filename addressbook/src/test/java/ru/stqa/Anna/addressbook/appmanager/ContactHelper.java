@@ -3,9 +3,11 @@ package ru.stqa.Anna.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
+import org.openqa.selenium.WebElement;
 import ru.stqa.Anna.addressbook.model.ContactDate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -71,5 +73,16 @@ public class ContactHelper extends HelperBase {
 
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<ContactDate> getContactList() {
+List <ContactDate> contacts= new ArrayList<ContactDate>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("td.firstname"));
+    for (WebElement element : elements) {
+      String firstname = element.getText();
+      ContactDate contact = new ContactDate(firstname, null, null, null,null);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }

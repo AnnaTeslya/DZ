@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.Anna.addressbook.model.GroupDate;
 
+import java.util.List;
+
 
 public class CroupCreationTest extends TestBase {
 
@@ -11,13 +13,14 @@ public class CroupCreationTest extends TestBase {
     public void testCroupCreation() {
 
         app.getNavigationHelper().gotoGroupPage();
-        int before = app.getGroupHelper().getGroupCount();
+        List<GroupDate> before = app.getGroupHelper().getGroupList();
+
         app.getGroupHelper().initGroupCreation();
         app.getGroupHelper().fillGroupForm(new GroupDate("test101", null,null));
         app.getGroupHelper().submitGroupCreation();
         app.getGroupHelper().returnGroupPage();
-        int after = app.getGroupHelper().getGroupCount();
-        Assert.assertEquals(before + 1, after);
+        List<GroupDate> after = app.getGroupHelper().getGroupList();
+        Assert.assertEquals(before.size() + 1, after.size());
     }
 
 }

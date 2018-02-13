@@ -3,8 +3,12 @@ package ru.stqa.Anna.addressbook.appmanager;
 import com.sun.javafx.binding.ExpressionHelperBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.Anna.addressbook.model.GroupDate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GroupHelper extends HelperBase {
 
@@ -35,7 +39,7 @@ public class GroupHelper extends HelperBase {
     click(By.name("delete"));
   }
 
-  public void selectGroup(int index ) {
+  public void selectGroup(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
@@ -59,7 +63,19 @@ public class GroupHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public  int getGroupCount() {
+  public int getGroupCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
-}
+
+  public List<GroupDate> getGroupList() {
+    List<GroupDate> groups = new ArrayList<GroupDate>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      GroupDate group = new GroupDate(name, null, null);
+      groups.add(group);
+    }
+      return groups;
+    }
+  }
+
