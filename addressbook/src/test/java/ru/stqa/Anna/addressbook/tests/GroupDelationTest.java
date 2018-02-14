@@ -23,6 +23,11 @@ public class GroupDelationTest extends TestBase {
         app.getGroupHelper().returnGroupPage();
         List<GroupDate> after = app.getGroupHelper().getGroupList();
         Assert.assertEquals(after.size(),before.size()-1);
+
+
+        before.remove(before.size()-1);
+        Assert.assertEquals(before,after);
     }
+
 
 }
