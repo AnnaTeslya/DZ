@@ -1,6 +1,7 @@
 package ru.stqa.Anna.addressbook.appmanager;
 
 
+import com.sun.xml.internal.bind.v2.util.ByteArrayOutputStreamEx;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -76,12 +77,12 @@ public class ContactHelper extends HelperBase {
   }
 
   public List<ContactDate> getContactList() {
-List <ContactDate> contacts= new ArrayList<ContactDate>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("td.entry"));
+    List <ContactDate> contacts= new ArrayList<ContactDate>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
 
     for (WebElement element : elements) {
-      String firstname = element.findElement(By.cssSelector("td.firstname")).getText();
-      String lastname = element.findElement(By.cssSelector("td.lastname")).getText();
+      String firstname = element.findElements(By.tagName("td")).get(By.cssSelector("firstname")).getText();
+      String lastname = element.findElements(By.tagName("td")).get(By.cssSelector("lastname")).getText();
       int id =Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       ContactDate contact = new ContactDate(id, firstname, lastname, null,null, null);
       contacts.add(contact);
