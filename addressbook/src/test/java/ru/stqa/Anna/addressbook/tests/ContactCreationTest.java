@@ -12,7 +12,7 @@ import java.util.List;
 public class ContactCreationTest extends TestBase {
 
 
-    @Test
+    @Test(enabled = false)
     public void testContactCreation() {
         List<ContactDate> before = app.getContactHelper().getContactList();
         app.getContactHelper().initContactCreation();

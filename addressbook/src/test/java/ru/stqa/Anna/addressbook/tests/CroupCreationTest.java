@@ -16,12 +16,8 @@ public class CroupCreationTest extends TestBase {
 
         app.getNavigationHelper().gotoGroupPage();
         List<GroupDate> before = app.getGroupHelper().getGroupList();
-
-        app.getGroupHelper().initGroupCreation();
         GroupDate group = new GroupDate("test101", null, null);
-        app.getGroupHelper().fillGroupForm(group);
-        app.getGroupHelper().submitGroupCreation();
-        app.getGroupHelper().returnGroupPage();
+        app.getGroupHelper().createGroup(group);
         List<GroupDate> after = app.getGroupHelper().getGroupList();
         Assert.assertEquals(before.size() + 1, after.size());
 
@@ -32,5 +28,7 @@ public class CroupCreationTest extends TestBase {
         after.sort(byId);
         Assert.assertEquals(before,after);
     }
+
+
 
 }
