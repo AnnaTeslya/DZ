@@ -61,10 +61,23 @@ public class ContactHelper extends HelperBase {
   }
 
 
-  public void createContact(ContactDate contact) {
+  public void create(ContactDate contact) {
     initContactCreation();
     fillContactForm(contact);
     submitContactCreation();
+    returnContactPage();
+  }
+  public void delete(List<ContactDate> before) {
+    selectContact(before.size()-1);
+    deleteSelectedContacts();
+    closeAlert();
+  }
+
+  public void modify(int index, ContactDate contact) {
+    selectContact(index);
+    initContactModification();
+    fillContactForm(contact);
+    submitContactModification();
     returnContactPage();
   }
 
@@ -76,7 +89,7 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactDate> getContactList() {
+  public List<ContactDate> list() {
     List <ContactDate> contacts= new ArrayList<ContactDate>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
 

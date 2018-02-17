@@ -5,20 +5,19 @@ import org.testng.annotations.Test;
 import ru.stqa.Anna.addressbook.model.GroupDate;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 
-public class CroupCreationTest extends TestBase {
+public class GroupCreationTest extends TestBase {
 
     @Test
-    public void testCroupCreation() {
+    public void testGroupCreation() {
 
-        app.getNavigationHelper().gotoGroupPage();
-        List<GroupDate> before = app.getGroupHelper().getGroupList();
+        app.goTo().GroupPage();
+        List<GroupDate> before = app.group().list();
         GroupDate group = new GroupDate("test101", null, null);
-        app.getGroupHelper().createGroup(group);
-        List<GroupDate> after = app.getGroupHelper().getGroupList();
+        app.group().create(group);
+        List<GroupDate> after = app.group().list();
         Assert.assertEquals(before.size() + 1, after.size());
 
 

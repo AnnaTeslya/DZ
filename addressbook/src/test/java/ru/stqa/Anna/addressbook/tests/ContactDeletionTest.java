@@ -1,25 +1,27 @@
 package ru.stqa.Anna.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.Anna.addressbook.model.ContactDate;
 
 import java.util.List;
 
 public class ContactDeletionTest extends TestBase{
+  @BeforeMethod
+  public void ensurePreconditions(){
+    app.goTo().homePage();
+
+    if (app.contact().list().size()==0){
+      app.contact().create(new ContactDate("Anna", "Ivanova", "Spain", "80002221113344", "Ivanova@ail.ru"));
+    }
+  }
   @Test(enabled = false)
   public void testContactDeletion(){
-    app.getNavigationHelper().gotoHomePage();
-
-    if (!app.getContactHelper().isThereAContact()){
-      app.getContactHelper().createContact(new ContactDate("Anna", "Ivanova", "Spain", "80002221113344", "Ivanova@ail.ru"));
-    }
-    List<ContactDate> before = app.getContactHelper().getContactList();
-    app.getContactHelper().selectContact(before.size()-1);
-    app.getContactHelper().deleteSelectedContacts();
-    app.getContactHelper().closeAlert();
-    app.getNavigationHelper().gotoHomePage();
-    List<ContactDate> after = app.getContactHelper().getContactList();
+    List<ContactDate> before = app.contact().list();
+    app.contact().delete(before);
+    app.goTo().homePage();
+    List<ContactDate> after = app.contact().list();
 
     Assert.assertEquals(after.size(),before.size()-1);
 
@@ -29,5 +31,4 @@ public class ContactDeletionTest extends TestBase{
 
 
 
-
-  }
+}

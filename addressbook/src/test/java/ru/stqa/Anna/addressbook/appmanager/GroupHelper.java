@@ -19,11 +19,22 @@ public class GroupHelper extends HelperBase {
   public void returnGroupPage() {
     click(By.linkText("group page"));
   }
-
   public void submitGroupCreation() {
     click(By.name("submit"));
   }
-
+  public void initGroupCreation() {
+    click(By.name("new"));
+  }
+  public void deleteSelectedGroups() {
+    click(By.name("delete"));
+  }
+  public void selectGroup(int index) {wd.findElements(By.name("selected[]")).get(index).click(); }
+  public void initGroupModification() {
+    click(By.name("edit"));
+  }
+  public void submitGroupModification() {
+    click(By.name("update"));
+  }
   public void fillGroupForm(GroupDate groupDate) {
     type(By.name("group_name"), groupDate.getName());
     type(By.name("group_header"), groupDate.getHeader());
@@ -31,42 +42,25 @@ public class GroupHelper extends HelperBase {
 
   }
 
-  public void initGroupCreation() {
-    click(By.name("new"));
-  }
-
-  public void deleteSelectedGroups() {
-    click(By.name("delete"));
-  }
-
-  public void selectGroup(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
-  }
-
-
-  public void initGroupModification() {
-    click(By.name("edit"));
-  }
-
-  public void submitGroupModification() {
-    click(By.name("update"));
-  }
-
-  public void createGroup(GroupDate group) {
+  public void create(GroupDate group) {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
     returnGroupPage();
   }
 
- public void modifyGroup(int index, GroupDate group) {
+ public void modify(int index, GroupDate group) {
     selectGroup(index);
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
     returnGroupPage();
   }
-
+  public void delete(int index) {
+   selectGroup(index);
+   deleteSelectedGroups();
+   returnGroupPage();
+  }
 
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
@@ -76,7 +70,7 @@ public class GroupHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<GroupDate> getGroupList() {
+  public List<GroupDate> list() {
     List<GroupDate> groups = new ArrayList<GroupDate>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {
