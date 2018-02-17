@@ -1,55 +1,48 @@
 package ru.stqa.Anna.addressbook.model;
 
 public class ContactDate {
-  public void setId(int id) {
-    this.id = id;
-  }
+  private  int id = Integer.MAX_VALUE;
+  private  String firstname;
+  private  String lastname;
+  private  String address;
+  private  String mobile;
+  private  String email;
 
-  private  int id;
-  private final String firstname;
-  private final String lastname;
-  private final String address;
-  private final String mobile;
-  private final String email;
 
-  public ContactDate(String firstname, String lastname, String address, String mobile, String email) {
-    this.id = Integer.MAX_VALUE;
+  public ContactDate withFirstname(String firstname) {
     this.firstname = firstname;
-    this.lastname = lastname;
-    this.address = address;
-    this.mobile = mobile;
-    this.email = email;
+    return this;
   }
 
-  public ContactDate(int id,String firstname, String lastname, String address, String mobile, String email) {
+  public ContactDate withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactDate withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactDate withMobile(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+
+  public ContactDate withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+  public ContactDate withId(int id) {
     this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.address = address;
-    this.mobile = mobile;
-    this.email = email;
+    return this;
   }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactDate that = (ContactDate) o;
-
-    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-    return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
-  }
-
-
 
   public int getId() { return id;  }
 
   public String getFirstname() {
     return firstname;
   }
-
-
 
   public String getLastname() {
     return lastname;
@@ -66,6 +59,18 @@ public class ContactDate {
   public String getEmail() {
     return email;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactDate that = (ContactDate) o;
+
+    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
+    return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
+  }
+
   @Override
   public int hashCode() {
     int result = firstname != null ? firstname.hashCode() : 0;

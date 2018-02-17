@@ -13,7 +13,7 @@ public class ContactDeletionTest extends TestBase{
     app.goTo().homePage();
 
     if (app.contact().list().size()==0){
-      app.contact().create(new ContactDate("Anna", "Ivanova", "Spain", "80002221113344", "Ivanova@ail.ru"));
+      app.contact().create(new ContactDate().withFirstname("Anna").withLastname("Ivanova").withAddress("Spain").withMobile("80002221113344").withEmail("Ivanova@ail.ru"));
     }
   }
   @Test(enabled = false)

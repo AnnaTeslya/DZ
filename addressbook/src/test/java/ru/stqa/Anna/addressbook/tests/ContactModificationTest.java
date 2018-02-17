@@ -14,18 +14,19 @@ public class ContactModificationTest extends TestBase {
     app.goTo().homePage();
 
     if (app.contact().list().size()==0) {
-      app.contact().create(new ContactDate("Anna", "Ivanova", "Spain", "80002221113344", "Ivanova@ail.ru"));
+      app.contact().create(new ContactDate().
+              withFirstname("Anna").withLastname("Ivanova").withAddress("Spain").withMobile("80002221113344").withEmail("Ivanova@ail.ru"));
     }
   }
   @Test(enabled = false)
   public void testContactModification() {
     List<ContactDate> before = app.contact().list();
     int index = before.size()-1;
-    ContactDate contact = new ContactDate(before.get(index).getId(),"masha", "Ivanova", "Spain", "80002221113344", "Ivanova@ail.ru");
+    ContactDate contact = new ContactDate().withId(before.get(index).getId()).withFirstname("masha").withLastname("Ivanova").withAddress("Spain").withMobile("80002221113344").withEmail("Ivanova@ail.ru");
     app.contact().modify(index, contact);
     List<ContactDate> after = app.contact().list();
     Assert.assertEquals(before.size(), after.size());
-    
+
     before.remove(index);
     before.add(contact);
     Comparator<? super ContactDate> byId = (c1,c2) -> Integer.compare(c1.getId(),c2.getId());
