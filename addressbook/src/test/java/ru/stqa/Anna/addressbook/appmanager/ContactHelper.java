@@ -8,7 +8,9 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.Anna.addressbook.model.ContactDate;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -42,10 +44,16 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
 
   }
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value= '" + id + "']")).click();
+
+  }
 
   public void deleteSelectedContacts() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
+
+
 
   public void closeAlert() {
     wd.switchTo().alert().accept();
@@ -73,8 +81,13 @@ public class ContactHelper extends HelperBase {
     closeAlert();
   }
 
-  public void modify(int index, ContactDate contact) {
-    selectContact(index);
+  public void delete(ContactDate contact) {
+    selectContactById(contact.getId());
+    deleteSelectedContacts();
+    closeAlert();
+  }
+  public void modify(ContactDate contact) {
+    selectContactById(contact.getId());
     initContactModification();
     fillContactForm(contact);
     submitContactModification();
@@ -102,4 +115,19 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+  public Set<ContactDate> all() {
+    Set <ContactDate> contacts= new HashSet<>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+
+    for (WebElement element : elements) {
+      String firstname = element.findElements(By.tagName("td")).get(1).getText();
+      String lastname = element.findElements(By.tagName("td")).get(1).getText();
+      int id =Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      ContactDate contact = new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname);
+      contacts.add(contact);
+    }
+    return contacts;
+  }
+
+
 }

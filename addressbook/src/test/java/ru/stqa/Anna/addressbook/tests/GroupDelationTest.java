@@ -1,11 +1,14 @@
 package ru.stqa.Anna.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.Anna.addressbook.model.GroupDate;
+import ru.stqa.Anna.addressbook.model.Groups;
 
-import java.util.List;
+import java.util.Set;
 
 public class GroupDelationTest extends TestBase {
 
@@ -13,21 +16,22 @@ public class GroupDelationTest extends TestBase {
     public void ensurePreconditions(){
         app.goTo().GroupPage();
 
-        if( app.group().list().size()==0){
+        if( app.group().all().size()==0){
             app.group().create(new GroupDate().withName("test101"));
         }
     }
     @Test
+
     public void testGroupDelation() {
-        List<GroupDate> before = app.group().list();
-        int index =before.size()-1;
-        app.group().delete(index);
-        List<GroupDate> after = app.group().list();
+        Groups before = app.group().all();
+        GroupDate deletedGroup = before.iterator().next();
+        app.group().delete(deletedGroup);
+        Groups after = app.group().all();
         Assert.assertEquals(after.size(),before.size()-1);
+        MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.without(deletedGroup)));
 
 
-        before.remove(index);
-        Assert.assertEquals(before,after);
+
     }
 
 
