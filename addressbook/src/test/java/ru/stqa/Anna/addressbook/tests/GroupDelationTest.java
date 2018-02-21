@@ -10,6 +10,10 @@ import ru.stqa.Anna.addressbook.model.Groups;
 
 import java.util.Set;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
+
 public class GroupDelationTest extends TestBase {
 
     @BeforeMethod
@@ -27,8 +31,8 @@ public class GroupDelationTest extends TestBase {
         GroupDate deletedGroup = before.iterator().next();
         app.group().delete(deletedGroup);
         Groups after = app.group().all();
-        Assert.assertEquals(after.size(),before.size()-1);
-        MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.without(deletedGroup)));
+        assertEquals(after.size(),before.size()-1);
+        assertThat(after, equalTo(before.without(deletedGroup)));
 
 
 

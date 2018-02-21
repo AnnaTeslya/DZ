@@ -1,13 +1,14 @@
 package ru.stqa.Anna.addressbook.appmanager;
 
 
-import com.sun.xml.internal.bind.v2.util.ByteArrayOutputStreamEx;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.Anna.addressbook.model.ContactDate;
+import ru.stqa.Anna.addressbook.model.Contacts;
 
-import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -102,29 +103,16 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactDate> list() {
-    List <ContactDate> contacts= new ArrayList<ContactDate>();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
 
-    for (WebElement element : elements) {
-      String firstname = element.findElements(By.tagName("td")).get(1).getText();
-      String lastname = element.findElements(By.tagName("td")).get(1).getText();
-      int id =Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactDate contact = new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname);
-      contacts.add(contact);
-    }
-    return contacts;
-  }
-  public Set<ContactDate> all() {
-    Set <ContactDate> contacts= new HashSet<>();
+  public Contacts all() {
+   Contacts contacts= new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
 
     for (WebElement element : elements) {
       String firstname = element.findElements(By.tagName("td")).get(2).getText();
       String lastname = element.findElements(By.tagName("td")).get(1).getText();
       int id =Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactDate contact = new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname);
-      contacts.add(contact);
+      contacts.add(new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname));
     }
     return contacts;
   }
