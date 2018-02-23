@@ -25,5 +25,16 @@ public class GroupCreationTest extends TestBase {
     }
 
 
+    @Test
+    public void testBadGroupCreation() {
+
+        app.goTo().GroupPage();
+        Groups before = app.group().all();
+        GroupDate group = new GroupDate().withName("test'");
+        app.group().create(group);
+        assertThat(app.group().count(),equalTo(before.size()));
+        Groups after = app.group().all();
+        assertThat(after, equalTo(before));
+    }
 
 }

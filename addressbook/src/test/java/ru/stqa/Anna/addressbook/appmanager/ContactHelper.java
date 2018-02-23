@@ -83,7 +83,7 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public int getContactCount() {
+  public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
@@ -93,16 +93,25 @@ public class ContactHelper extends HelperBase {
       return new Contacts(contactCache);
     }
    contactCache= new Contacts();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
 
-    for (WebElement element : elements) {
-      String firstname = element.findElements(By.tagName("td")).get(2).getText();
-      String lastname = element.findElements(By.tagName("td")).get(1).getText();
-      int id =Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contactCache.add(new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname));
-    }
-    return new Contacts(contactCache);
+    //List<WebElement> elements = wd.findElements(By.name("entry"));
+    //for (WebElement element : elements) {
+     // String firstname = element.findElements(By.tagName("td")).get(2).getText();
+     // String lastname = element.findElements(By.tagName("td")).get(1).getText();
+    //  int id =Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      //contactCache.add(new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname));
+    //}
+
+  List<WebElement> rows = wd.findElements(By.name("entry"));
+    for(WebElement row: rows) {
+      List<WebElement> cells= row.findElements(By.tagName("td"));
+    int id =Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+
+    String lastname = cells.get(1).getText();
+      String firstname = cells.get(2).getText();
+    contactCache.add(new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname));
   }
-
+    return new Contacts(contactCache);
+}
 
 }

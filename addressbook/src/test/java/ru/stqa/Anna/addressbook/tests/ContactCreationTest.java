@@ -23,6 +23,16 @@ public class ContactCreationTest extends TestBase {
         assertThat(after, equalTo(
                 before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
     }
-
+    @Test
+    public void testBadContactCreation() {
+        app.goTo().homePage();
+        Contacts before = app.contact().all();
+        ContactDate contact = new ContactDate()
+                .withFirstname("Anna").withLastname("Ivanova").withAddress("Spain").withMobile("80002221113344").withEmail("Ivanova@ail.ru");
+        app.contact().create(contact);
+        assertThat(app.contact().count(), equalTo(before.size()));
+        Contacts after = app.contact().all();
+        assertThat(after, equalTo(before));
+    }
 
 }
