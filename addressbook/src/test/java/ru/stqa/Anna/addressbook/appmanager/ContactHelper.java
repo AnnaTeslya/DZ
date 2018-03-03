@@ -49,7 +49,7 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void initContactModification() { click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));}
+
 
   public void submitContactModification() {
     click(By.xpath("//div[@id='content']/form[1]/input[22]"));
@@ -79,6 +79,10 @@ public class ContactHelper extends HelperBase {
     returnContactPage();
   }
 
+  private void initContactModification() {
+    click(By.name("edit"));;
+  }
+
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
@@ -93,6 +97,7 @@ public class ContactHelper extends HelperBase {
       return new Contacts(contactCache);
     }
    contactCache= new Contacts();
+
 
     //List<WebElement> elements = wd.findElements(By.name("entry"));
     //for (WebElement element : elements) {
