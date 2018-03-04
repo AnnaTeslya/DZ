@@ -7,6 +7,8 @@ public class ContactDate {
   private  String address;
   private  String mobile;
   private  String email;
+  private  String work;
+  private  String home;
 
   @Override
   public boolean equals(Object o) {
@@ -43,7 +45,7 @@ public class ContactDate {
     return this;
   }
 
-  public ContactDate withMobile(String mobile) {
+  public ContactDate withMobilePhone(String mobile) {
     this.mobile = mobile;
     return this;
   }
@@ -54,6 +56,14 @@ public class ContactDate {
   }
   public ContactDate withId(int id) {
     this.id = id;
+    return this;
+  }
+  public ContactDate withHomePhone(String home) {
+    this.home = home;
+    return this;
+  }
+  public ContactDate withWorkPhone(String work) {
+    this.work = work;
     return this;
   }
 
@@ -87,4 +97,6 @@ public class ContactDate {
             ", lastname='" + lastname + '\'' +
             '}';
   }
+
+
 }
