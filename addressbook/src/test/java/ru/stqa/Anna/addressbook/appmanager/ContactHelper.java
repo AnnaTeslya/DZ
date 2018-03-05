@@ -77,9 +77,9 @@ public class ContactHelper extends HelperBase {
     returnContactPage();
   }
 
-  private void initContactModification() {
-    click(By.name("edit"));;
-  }
+
+    public void initContactModification() { click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));}
+
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));

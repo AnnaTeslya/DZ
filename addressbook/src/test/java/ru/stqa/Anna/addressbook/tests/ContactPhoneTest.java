@@ -3,7 +3,7 @@ import org.testng.annotations.Test;
 import ru.stqa.Anna.addressbook.model.ContactDate;
 
 public class ContactPhoneTest extends TestBase{
-  @Test
+  @Test(enabled = false)
   public void testContactPhones(){
     app.goTo().homePage();
     ContactDate contact = app.contact().all().iterator().next();

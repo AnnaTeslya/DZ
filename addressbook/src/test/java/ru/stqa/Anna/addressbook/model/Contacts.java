@@ -19,7 +19,7 @@ public class Contacts extends ForwardingSet<ContactDate> {
 
   @Override
   protected Set<ContactDate> delegate() {
-    return null;
+    return delegate;
   }
   public Contacts withAdded(ContactDate contact){
    Contacts contacts = new Contacts(this);
