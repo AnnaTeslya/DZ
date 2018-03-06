@@ -69,8 +69,7 @@ public class ContactHelper extends HelperBase {
     closeAlert();
   }
   public void modify(ContactDate contact) {
-
-    initContactModification();
+    initContactModificationById(contact.getId());
     fillContactForm(contact);
     submitContactModification();
     contactCache = null;
@@ -78,7 +77,7 @@ public class ContactHelper extends HelperBase {
   }
 
 
-    public void initContactModification() { click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));}
+    public void initContactModification(int id) { click(By.tagName("edit"));}
 
 
   public boolean isThereAContact() {
