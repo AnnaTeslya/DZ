@@ -31,6 +31,7 @@ public class GroupModificationTest extends TestBase {
   GroupDate modifiedGroup = before.iterator().next();
     GroupDate group = new GroupDate()
           .withId(modifiedGroup.getId()).withName("testik").withHeader("test1").withFooter("test2");
+  app.goTo().GroupPage();
   app.group().modify(group);
   assertEquals(before.size(),app.group().count());
   Groups after = app.group().all();
