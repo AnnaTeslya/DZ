@@ -29,7 +29,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("firstname"), contactDate.getFirstname());
     type(By.name("lastname"), contactDate.getLastname());
     type(By.name("address"), contactDate.getAddress());
-    type(By.name("mobile"), contactDate.getMobile());
+    type(By.name("mobile"), contactDate.getMobilePhone());
     type(By.name("email"), contactDate.getEmail());
 
   }
@@ -111,7 +111,8 @@ public class ContactHelper extends HelperBase {
 
     String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
-    contactCache.add(new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname));
+      String[] phones = cells.get(5).getText().split("\n");
+      contactCache.add(new ContactDate().withId(id).withFirstname(firstname).withLastname(lastname).withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
   }
     return new Contacts(contactCache);
 }

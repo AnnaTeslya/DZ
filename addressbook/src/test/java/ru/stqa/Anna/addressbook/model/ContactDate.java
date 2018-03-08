@@ -81,7 +81,13 @@ public class ContactDate {
     return address;
   }
 
-  public String getMobile() {
+  public String getMobilePhone() {
+    return mobile;
+  }
+  public String getHomePhone() {
+    return mobile;
+  }
+  public String getWorkPhone() {
     return mobile;
   }
 
