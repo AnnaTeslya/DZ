@@ -9,6 +9,17 @@ public class ContactDate {
   private  String email;
   private  String work;
   private  String home;
+  private  String allPhones;
+
+  public ContactDate withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+  return this;
+  }
+
+
+  public String getAllPhones() {
+    return allPhones;
+  }
 
   @Override
   public boolean equals(Object o) {

@@ -6,8 +6,6 @@ import ru.stqa.Anna.addressbook.model.Groups;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-
 public class GroupCreationTest extends TestBase {
 
     @Test
