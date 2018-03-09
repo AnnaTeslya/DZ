@@ -7,20 +7,29 @@ public class ContactDate {
   private  String address;
   private  String mobile;
   private  String email;
+  private  String email2;
+  private  String email3;
   private  String work;
   private  String home;
   private  String allPhones;
+  private  String allEmails;
 
   public ContactDate withAllPhones(String allPhones) {
     this.allPhones = allPhones;
   return this;
   }
 
+  public ContactDate withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
 
   public String getAllPhones() {
     return allPhones;
   }
-
+  public String getAllEmails() {
+    return allEmails;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -32,7 +41,6 @@ public class ContactDate {
     if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
     return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
   }
-
   @Override
   public int hashCode() {
     int result = id;
@@ -63,6 +71,14 @@ public class ContactDate {
 
   public ContactDate withEmail(String email) {
     this.email = email;
+    return this;
+  }
+  public ContactDate withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+  public ContactDate withEmail3(String email3) {
+    this.email3 = email3;
     return this;
   }
   public ContactDate withId(int id) {
@@ -96,15 +112,13 @@ public class ContactDate {
     return mobile;
   }
   public String getHomePhone() {
-    return mobile;
+    return home;
   }
   public String getWorkPhone() {
-    return mobile;
+    return work;
   }
 
-  public String getEmail() {
-    return email;
-  }
+
 
   @Override
   public String toString() {
@@ -116,4 +130,15 @@ public class ContactDate {
   }
 
 
+  public String getEmail() {
+    return email;
+  }
+
+  public String getEmail2() {
+    return email2;
+  }
+
+  public String getEmail3() {
+    return email3;
+  }
 }
