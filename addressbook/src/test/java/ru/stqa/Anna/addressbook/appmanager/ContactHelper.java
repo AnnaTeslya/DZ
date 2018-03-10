@@ -31,7 +31,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("address"), contactDate.getAddress());
     type(By.name("mobile"), contactDate.getMobilePhone());
     type(By.name("email"), contactDate.getEmail());
-
+    attache(By.name("photo"), contactDate.getPhoto());
   }
 
   public void initContactCreation() {click(By.linkText("add new"));}
